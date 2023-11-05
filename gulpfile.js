@@ -295,6 +295,7 @@ gulp.task('serve', () => {
         livereload: true
     })
 
+
     const slidesRoot = root.endsWith('/') ? root : root + '/'
     gulp.watch([
         slidesRoot + '**/*.html',
