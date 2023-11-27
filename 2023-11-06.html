@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<style type="text/css">
+			  .fragment.spotlight {
+				transform: translateY(100px);
+				  transform-origin: 0 0;
+			  }
+			  .fragment.spotlight.visible {
+				transform: none;
+				  color: #555
+			  }
+			  .fragment.spotlight.current-fragment {
+				transform: scale(1.5);
+				  color: white;
+			  }
+			  .box {
+				padding: 10px; /* Some padding inside the box */
+				box-sizing: border-box; /* To include padding in the box's width */
+				margin: 10px 0; /* Margin for spacing */
+				text-align: center; /* To center text inside the box */
+			  }
+
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<span class="r-fit-text">
+						<span class="fragment highlight-blue"> Income </span>
+						and
+						<span class="fragment highlight-red"> night-time phone usage </span>
+					</span>
+				</section>
+				<section data-background-iframe="assets/2023-10-06/paris_map.html"  data-background-interactive data-preload> </section>
+				<section data-background-iframe="assets/2023-10-06/income_vs_night_screen_index.html"  data-background-interactive data-preload> </section>
+				<section data-background-iframe="assets/2023-10-06/confidence_intervals.html"  data-background-interactive data-preload> </section>
+				<section>
+					<div class="r-fit-text">
+						What other
+						<span class="fragment highlight-blue"> sociodemographic characteristics </span>
+						<br>
+						are correlated with
+						<span class="fragment highlight-red"> high night-time phone usage </span>
+						?
+					</div>
+				</section>
+				<section>
+					<img src="assets/2023-10-06/clustering_analysis.png" width="65%">
+					<div> Low-income households often live in
+						<span class="fragment highlight-red"> older houses </span>,
+						live in  <span class="fragment highlight-red"> bigger households </span>,
+						have <span class="fragment highlight-red"> more children </span>
+								and are more often <span class="fragment highlight-red"> single parents </span>
+					</div>
+				</section>
+				<section>
+					<div class="r-fit-text">
+						What <span class="fragment highlight-green"> causes </span> observed relationships between
+						<br>
+						<span class="fragment highlight-blue"> sociodemographic characteristics </span>
+						and
+						<br>
+						<span class="fragment highlight-red"> high night-time phone usage </span>
+						?
+					</div>
+				</section>
+				<section>
+					<div class="r-fit-text"> H1: City characteristics cause <br> differences in <span class="fragment highlight-red"> night-time phone usage </span> </div>
+					<br>
+					<div align="left">
+					<ul>
+					  <li class="fragment spotlight">Noise</li>
+					  <li class="fragment spotlight">Home-Work Mobility</li>
+					  <li class="fragment spotlight">Amenities</li>
+					</ul>
+					</div>
+				</section>
+				<section>
+					<section> <span class="r-fit-text"> Noise </span> </section>
+					<section data-background-iframe="assets/2023-10-06/noise_vs_night_screen_index.html"  data-background-interactive data-preload> </section>
+				</section>
+				<section>
+					<section> <span class="r-fit-text"> Mobility </span> </section>
+					<section>
+						<div class> Trip Duration </div>
+						<div class="fragment">
+							<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d10497.197092023483!2d2.3217296785796875!3d48.87157114134061!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e3!4m5!1s0x47e66e477841dcbd%3A0x50b82c368941ad0!2s9%C3%A8me%20Arrondissement%2C%20Paris%2C%20France!3m2!1d48.8789787!2d2.3378289999999997!4m5!1s0x47e66e25d0482b3d%3A0x50b82c368941a50!2s1st%20arrondissement%2C%2075001%20Paris%2C%20France!3m2!1d48.8640396!2d2.3311563!5e0!3m2!1sen!2sch!4v1699198328031!5m2!1sen!2sch" style="border:0;" allowfullscreen="" width="700px" height="350px " ></iframe>
+						</div>
+						<div class="fragment">
+								\[\begin{equation*}
+							AD(h) = \sum_{t} P(t | h) \sum_{w} P(w| h, t) D_t(h,w)
+								  \end{equation*} \]
+						</div>
+					</section>
+					<section data-background-iframe="assets/2023-10-06/home_work_trip_duration_vs_night_screen_index.html"  data-background-interactive data-preload> </section>
+				</section>
+				<section>
+					<section>
+						<span class="r-fit-text"> Amenities </span>
+						<ul>
+						<li class="fragment spotlight">Large retail outlets (supermarkets, department stores)</li>
+						<li class="fragment spotlight">Food stores (bakeries, butchers)</li>
+							<li class="fragment spotlight">Cultural and sociocultural facilities (libraries, cinemas)</li>
+						<li class="fragment spotlight"> ... </li>
+					</ul>
+					</section>
+					<section data-background-iframe="assets/2023-10-06/amenities_vs_night_screen_index.html"  data-background-interactive data-preload> </section>
+				</section>
+				<section>
+					<div class="r-fit-text"> H2: Usage patterns cause differences in <span class="fragment highlight-red"> night-time phone usage </span> </div>
+				</section>
+				<section data-background-iframe="assets/2023-10-06/rca_app_usage_by_income_bracket.html"  data-background-interactive data-preload> </section>
+				<section data-background-iframe="assets/2023-10-06/app_usage_time_distribution_plot.html"  data-background-interactive data-preload> </section>
+				<section data-background-iframe="assets/2023-10-06/app_usage_low_vs_high_income_violin_plot.html"  data-background-interactive data-preload> </section>
+				<section>
+				<div> <span> Possible Extensions </span> </div>
+					<br>
+					<ul>
+						<li class="fragment spotlight"> Implications </li>
+						<li class="fragment spotlight"> App addictiveness scale </li>
+						<li class="fragment spotlight"> NightScreen index robustness  </li>
+					</ul>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/math/math.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX]
+			});
+		</script>
+	</body>
+</html>

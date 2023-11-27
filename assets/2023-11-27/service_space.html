@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 900px;
+                 background-color: #222222;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#636EFA", "font": {"color": "white"}, "id": 0, "label": "Twitch", "shape": "dot", "value": 12.427375593569613}, {"color": "#636EFA", "font": {"color": "white"}, "id": 1, "label": "Orange_TV", "shape": "dot", "value": 12.054527878131047}, {"color": "#636EFA", "font": {"color": "white"}, "id": 2, "label": "Web_Games", "shape": "dot", "value": 10.54838779782267}, {"color": "#636EFA", "font": {"color": "white"}, "id": 3, "label": "PlayStation", "shape": "dot", "value": 11.668913545886731}, {"color": "#EF553B", "font": {"color": "white"}, "id": 4, "label": "TeamViewer", "shape": "dot", "value": 9.091624584548809}, {"color": "#636EFA", "font": {"color": "white"}, "id": 5, "label": "Web_Weather", "shape": "dot", "value": 10.764848064520155}, {"color": "#EF553B", "font": {"color": "white"}, "id": 6, "label": "Google_Meet", "shape": "dot", "value": 11.730682524096093}, {"color": "#636EFA", "font": {"color": "white"}, "id": 7, "label": "Twitter", "shape": "dot", "value": 12.300110066503647}, {"color": "#EF553B", "font": {"color": "white"}, "id": 8, "label": "Apple_Music", "shape": "dot", "value": 11.953002662592915}, {"color": "#EF553B", "font": {"color": "white"}, "id": 9, "label": "SoundCloud", "shape": "dot", "value": 11.108067628708882}, {"color": "#EF553B", "font": {"color": "white"}, "id": 10, "label": "Wikipedia", "shape": "dot", "value": 10.511723523405497}, {"color": "#EF553B", "font": {"color": "white"}, "id": 11, "label": "Microsoft_Skydrive", "shape": "dot", "value": 10.847059691458464}, {"color": "#EF553B", "font": {"color": "white"}, "id": 12, "label": "Web_Transportation", "shape": "dot", "value": 11.076985151845427}, {"color": "#EF553B", "font": {"color": "white"}, "id": 13, "label": "Microsoft_Office", "shape": "dot", "value": 10.916168581293638}, {"color": "#EF553B", "font": {"color": "white"}, "id": 14, "label": "Yahoo_Mail", "shape": "dot", "value": 10.668272002172598}, {"color": "#EF553B", "font": {"color": "white"}, "id": 15, "label": "Web_Food", "shape": "dot", "value": 9.903958760560146}, {"color": "#636EFA", "font": {"color": "white"}, "id": 16, "label": "WhatsApp", "shape": "dot", "value": 11.77028053075892}, {"color": "#EF553B", "font": {"color": "white"}, "id": 17, "label": "Google_Mail", "shape": "dot", "value": 11.035891159526123}, {"color": "#EF553B", "font": {"color": "white"}, "id": 18, "label": "YouTube", "shape": "dot", "value": 12.893002599070964}, {"color": "#636EFA", "font": {"color": "white"}, "id": 19, "label": "Pinterest", "shape": "dot", "value": 11.669751772391075}, {"color": "#636EFA", "font": {"color": "white"}, "id": 20, "label": "Web_Clothes", "shape": "dot", "value": 11.638976711090612}, {"color": "#EF553B", "font": {"color": "white"}, "id": 21, "label": "Apple_Mail", "shape": "dot", "value": 10.264493757313662}, {"color": "#636EFA", "font": {"color": "white"}, "id": 22, "label": "Web_Adult", "shape": "dot", "value": 11.177951345488106}, {"color": "#EF553B", "font": {"color": "white"}, "id": 23, "label": "DailyMotion", "shape": "dot", "value": 12.189727245934735}, {"color": "#EF553B", "font": {"color": "white"}, "id": 24, "label": "Instagram", "shape": "dot", "value": 13.27997929378124}, {"color": "#EF553B", "font": {"color": "white"}, "id": 25, "label": "Skype", "shape": "dot", "value": 10.34357413419503}, {"color": "#636EFA", "font": {"color": "white"}, "id": 26, "label": "Clash_of_Clans", "shape": "dot", "value": 10.395246161584703}, {"color": "#EF553B", "font": {"color": "white"}, "id": 27, "label": "Pokemon_GO", "shape": "dot", "value": 10.450421266585204}, {"color": "#EF553B", "font": {"color": "white"}, "id": 28, "label": "Apple_App_Store", "shape": "dot", "value": 12.781103605807544}, {"color": "#EF553B", "font": {"color": "white"}, "id": 29, "label": "Google_Drive", "shape": "dot", "value": 11.641759877933122}, {"color": "#636EFA", "font": {"color": "white"}, "id": 30, "label": "Web_Finance", "shape": "dot", "value": 10.676442212183694}, {"color": "#636EFA", "font": {"color": "white"}, "id": 31, "label": "Facebook_Live", "shape": "dot", "value": 12.706933782664851}, {"color": "#636EFA", "font": {"color": "white"}, "id": 32, "label": "EA_Games", "shape": "dot", "value": 10.572490069477446}, {"color": "#EF553B", "font": {"color": "white"}, "id": 33, "label": "Google_Docs", "shape": "dot", "value": 10.586690850299496}, {"color": "#EF553B", "font": {"color": "white"}, "id": 34, "label": "Apple_Video", "shape": "dot", "value": 12.722520753312434}, {"color": "#EF553B", "font": {"color": "white"}, "id": 35, "label": "LinkedIn", "shape": "dot", "value": 12.164570625645396}, {"color": "#636EFA", "font": {"color": "white"}, "id": 36, "label": "Facebook_Messenger", "shape": "dot", "value": 9.990434954047476}, {"color": "#636EFA", "font": {"color": "white"}, "id": 37, "label": "Snapchat", "shape": "dot", "value": 12.484742110333125}, {"color": "#EF553B", "font": {"color": "white"}, "id": 38, "label": "Deezer", "shape": "dot", "value": 12.18954045945468}, {"color": "#636EFA", "font": {"color": "white"}, "id": 39, "label": "Netflix", "shape": "dot", "value": 13.019359703691292}, {"color": "#636EFA", "font": {"color": "white"}, "id": 40, "label": "Facebook", "shape": "dot", "value": 12.795457882952014}, {"color": "#636EFA", "font": {"color": "white"}, "id": 41, "label": "Telegram", "shape": "dot", "value": 10.721822214856326}, {"color": "#EF553B", "font": {"color": "white"}, "id": 42, "label": "Apple_iMessage", "shape": "dot", "value": 11.056083943661283}, {"color": "#636EFA", "font": {"color": "white"}, "id": 43, "label": "Molotov", "shape": "dot", "value": 12.126376789032909}, {"color": "#EF553B", "font": {"color": "white"}, "id": 44, "label": "Tor", "shape": "dot", "value": 10.003332669012332}, {"color": "#636EFA", "font": {"color": "white"}, "id": 45, "label": "Google_Play_Store", "shape": "dot", "value": 12.53207568764247}, {"color": "#636EFA", "font": {"color": "white"}, "id": 46, "label": "Web_e-Commerce", "shape": "dot", "value": 11.66435291731104}, {"color": "#636EFA", "font": {"color": "white"}, "id": 47, "label": "Fortnite", "shape": "dot", "value": 9.717936400580625}, {"color": "#EF553B", "font": {"color": "white"}, "id": 48, "label": "Microsoft_Mail", "shape": "dot", "value": 11.336372632534443}, {"color": "#636EFA", "font": {"color": "white"}, "id": 49, "label": "Periscope", "shape": "dot", "value": 11.088408197791976}, {"color": "#EF553B", "font": {"color": "white"}, "id": 50, "label": "Spotify", "shape": "dot", "value": 11.060333279703595}, {"color": "#636EFA", "font": {"color": "white"}, "id": 51, "label": "Web_Streaming", "shape": "dot", "value": 12.08187523470564}, {"color": "#EF553B", "font": {"color": "white"}, "id": 52, "label": "Yahoo", "shape": "dot", "value": 11.10618931822102}]);
+                  edges = new vis.DataSet([{"from": 0, "to": 1, "value": 2.901711318626052, "weight": 2.901711318626052}, {"from": 0, "to": 2, "value": 2.963857059359241, "weight": 2.963857059359241}, {"from": 0, "to": 3, "value": 1.312509344968669, "weight": 1.312509344968669}, {"from": 0, "to": 5, "value": 3.001807826666123, "weight": 3.001807826666123}, {"from": 0, "to": 19, "value": 3.0829289510527533, "weight": 3.0829289510527533}, {"from": 0, "to": 26, "value": 3.0771655683130645, "weight": 3.0771655683130645}, {"from": 0, "to": 31, "value": 3.0021444530521966, "weight": 3.0021444530521966}, {"from": 0, "to": 39, "value": 2.783835582922155, "weight": 2.783835582922155}, {"from": 0, "to": 40, "value": 3.047220202121524, "weight": 3.047220202121524}, {"from": 0, "to": 45, "value": 3.012283026070554, "weight": 3.012283026070554}, {"from": 0, "to": 46, "value": 2.9607256585930717, "weight": 2.9607256585930717}, {"from": 0, "to": 47, "value": 1.3580720140276474, "weight": 1.3580720140276474}, {"from": 1, "to": 2, "value": 2.913081078015793, "weight": 2.913081078015793}, {"from": 1, "to": 3, "value": 1.3320952124416974, "weight": 1.3320952124416974}, {"from": 1, "to": 5, "value": 2.9720005103704437, "weight": 2.9720005103704437}, {"from": 1, "to": 19, "value": 2.9101524856867527, "weight": 2.9101524856867527}, {"from": 1, "to": 26, "value": 2.8458455058088186, "weight": 2.8458455058088186}, {"from": 1, "to": 31, "value": 2.8886119438175757, "weight": 2.8886119438175757}, {"from": 1, "to": 39, "value": 2.705417015183521, "weight": 2.705417015183521}, {"from": 1, "to": 40, "value": 2.91125210020814, "weight": 2.91125210020814}, {"from": 1, "to": 45, "value": 2.9308602609300967, "weight": 2.9308602609300967}, {"from": 1, "to": 46, "value": 2.93848306474959, "weight": 2.93848306474959}, {"from": 1, "to": 47, "value": 1.3213207252931085, "weight": 1.3213207252931085}, {"from": 2, "to": 3, "value": 1.3529411764705883, "weight": 1.3529411764705883}, {"from": 2, "to": 5, "value": 2.92158680798254, "weight": 2.92158680798254}, {"from": 2, "to": 19, "value": 2.8826030270392833, "weight": 2.8826030270392833}, {"from": 2, "to": 26, "value": 2.872423398328691, "weight": 2.872423398328691}, {"from": 2, "to": 31, "value": 2.8657976579428968, "weight": 2.8657976579428968}, {"from": 2, "to": 37, "value": 1.343359851344289, "weight": 1.343359851344289}, {"from": 2, "to": 39, "value": 1.3527960048777654, "weight": 1.3527960048777654}, {"from": 2, "to": 40, "value": 2.8953030568999676, "weight": 2.8953030568999676}, {"from": 2, "to": 45, "value": 2.8839287719219455, "weight": 2.8839287719219455}, {"from": 2, "to": 46, "value": 2.881019009939207, "weight": 2.881019009939207}, {"from": 2, "to": 47, "value": 2.733813367400267, "weight": 2.733813367400267}, {"from": 3, "to": 5, "value": 1.291043179321855, "weight": 1.291043179321855}, {"from": 3, "to": 19, "value": 1.3169888328326058, "weight": 1.3169888328326058}, {"from": 3, "to": 26, "value": 1.3087030368910932, "weight": 1.3087030368910932}, {"from": 3, "to": 31, "value": 1.3333333333333333, "weight": 1.3333333333333333}, {"from": 3, "to": 32, "value": 0.4961260853976024, "weight": 0.4961260853976024}, {"from": 3, "to": 37, "value": 2.7925569000511286, "weight": 2.7925569000511286}, {"from": 3, "to": 39, "value": 2.6792064131846476, "weight": 2.6792064131846476}, {"from": 3, "to": 40, "value": 1.3182034756877399, "weight": 1.3182034756877399}, {"from": 3, "to": 45, "value": 1.3268811892304584, "weight": 1.3268811892304584}, {"from": 3, "to": 46, "value": 1.3514185081540095, "weight": 1.3514185081540095}, {"from": 3, "to": 47, "value": 2.9224749403713344, "weight": 2.9224749403713344}, {"from": 3, "to": 51, "value": 2.6382527631845605, "weight": 2.6382527631845605}, {"from": 4, "to": 28, "value": 0.2274556565807124, "weight": 0.2274556565807124}, {"from": 5, "to": 19, "value": 3.077376565954311, "weight": 3.077376565954311}, {"from": 5, "to": 20, "value": 1.3058784930744762, "weight": 1.3058784930744762}, {"from": 5, "to": 26, "value": 2.968299476866635, "weight": 2.968299476866635}, {"from": 5, "to": 31, "value": 2.862384497064008, "weight": 2.862384497064008}, {"from": 5, "to": 38, "value": 0.5358686504143902, "weight": 0.5358686504143902}, {"from": 5, "to": 39, "value": 1.3515826712123589, "weight": 1.3515826712123589}, {"from": 5, "to": 40, "value": 2.886124833864132, "weight": 2.886124833864132}, {"from": 5, "to": 45, "value": 2.9288392877192195, "weight": 2.9288392877192195}, {"from": 5, "to": 46, "value": 2.8865675962559103, "weight": 2.8865675962559103}, {"from": 5, "to": 47, "value": 1.3133532088498352, "weight": 1.3133532088498352}, {"from": 6, "to": 8, "value": 0.5306355901908916, "weight": 0.5306355901908916}, {"from": 6, "to": 9, "value": 0.534108620069536, "weight": 0.534108620069536}, {"from": 6, "to": 10, "value": 1.5557488258827623, "weight": 1.5557488258827623}, {"from": 6, "to": 12, "value": 0.6046320967411354, "weight": 0.6046320967411354}, {"from": 6, "to": 14, "value": 0.6163905841325196, "weight": 0.6163905841325196}, {"from": 6, "to": 16, "value": 0.4824478816408876, "weight": 0.4824478816408876}, {"from": 6, "to": 24, "value": 0.5254350330443218, "weight": 0.5254350330443218}, {"from": 6, "to": 29, "value": 0.4844045098151434, "weight": 0.4844045098151434}, {"from": 6, "to": 35, "value": 1.446480593929142, "weight": 1.446480593929142}, {"from": 7, "to": 15, "value": 0.4211535695449969, "weight": 0.4211535695449969}, {"from": 7, "to": 20, "value": 0.5081073962500205, "weight": 0.5081073962500205}, {"from": 7, "to": 27, "value": 0.445390036918061, "weight": 0.445390036918061}, {"from": 8, "to": 10, "value": 0.6510331021662972, "weight": 0.6510331021662972}, {"from": 8, "to": 12, "value": 0.6657101865136298, "weight": 0.6657101865136298}, {"from": 8, "to": 14, "value": 0.6960749267176664, "weight": 0.6960749267176664}, {"from": 8, "to": 21, "value": 0.6574384787472036, "weight": 0.6574384787472036}, {"from": 8, "to": 35, "value": 0.6461714449131336, "weight": 0.6461714449131336}, {"from": 9, "to": 10, "value": 0.7012348639251887, "weight": 0.7012348639251887}, {"from": 9, "to": 24, "value": 1.5122886944011509, "weight": 1.5122886944011509}, {"from": 9, "to": 50, "value": 1.6058033315421816, "weight": 1.6058033315421816}, {"from": 10, "to": 12, "value": 0.7344401175104188, "weight": 0.7344401175104188}, {"from": 10, "to": 14, "value": 1.5225225225225223, "weight": 1.5225225225225223}, {"from": 10, "to": 24, "value": 0.6429394288486024, "weight": 0.6429394288486024}, {"from": 10, "to": 35, "value": 1.6837710906244563, "weight": 1.6837710906244563}, {"from": 10, "to": 50, "value": 0.6937130574959698, "weight": 0.6937130574959698}, {"from": 11, "to": 25, "value": 0.2858185267612828, "weight": 0.2858185267612828}, {"from": 12, "to": 14, "value": 1.8919177427068388, "weight": 1.8919177427068388}, {"from": 12, "to": 16, "value": 1.8351042367182244, "weight": 1.8351042367182244}, {"from": 12, "to": 21, "value": 0.646853863496618, "weight": 0.646853863496618}, {"from": 12, "to": 29, "value": 0.3456761861157214, "weight": 0.3456761861157214}, {"from": 12, "to": 35, "value": 1.657990025278404, "weight": 1.657990025278404}, {"from": 13, "to": 50, "value": 0.2988099067224188, "weight": 0.2988099067224188}, {"from": 14, "to": 16, "value": 1.5932750504371216, "weight": 1.5932750504371216}, {"from": 14, "to": 17, "value": 0.3325802615933412, "weight": 0.3325802615933412}, {"from": 14, "to": 35, "value": 1.7032839290903807, "weight": 1.7032839290903807}, {"from": 16, "to": 28, "value": 0.7456650270780544, "weight": 0.7456650270780544}, {"from": 16, "to": 41, "value": 0.7505372492836676, "weight": 0.7505372492836676}, {"from": 16, "to": 42, "value": 1.518366388921488, "weight": 1.518366388921488}, {"from": 17, "to": 35, "value": 0.6328180737217598, "weight": 0.6328180737217598}, {"from": 18, "to": 30, "value": 0.3645516518091243, "weight": 0.3645516518091243}, {"from": 19, "to": 20, "value": 1.3544583640383199, "weight": 1.3544583640383199}, {"from": 19, "to": 22, "value": 0.4925316025168641, "weight": 0.4925316025168641}, {"from": 19, "to": 26, "value": 3.040967457028331, "weight": 3.040967457028331}, {"from": 19, "to": 31, "value": 2.875632950475485, "weight": 2.875632950475485}, {"from": 19, "to": 39, "value": 2.7444022447707046, "weight": 2.7444022447707046}, {"from": 19, "to": 40, "value": 2.8783007748827645, "weight": 2.8783007748827645}, {"from": 19, "to": 45, "value": 2.9185547796016436, "weight": 2.9185547796016436}, {"from": 19, "to": 46, "value": 2.903792338126025, "weight": 2.903792338126025}, {"from": 19, "to": 47, "value": 1.3372824669803298, "weight": 1.3372824669803298}, {"from": 20, "to": 43, "value": 0.581839432399954, "weight": 0.581839432399954}, {"from": 23, "to": 30, "value": 0.3861038280020975, "weight": 0.3861038280020975}, {"from": 24, "to": 50, "value": 0.7408919935518538, "weight": 0.7408919935518538}, {"from": 25, "to": 30, "value": 0.297115888830624, "weight": 0.297115888830624}, {"from": 26, "to": 31, "value": 3.0120695656079133, "weight": 3.0120695656079133}, {"from": 26, "to": 37, "value": 1.3118010734424892, "weight": 1.3118010734424892}, {"from": 26, "to": 39, "value": 1.309083497520212, "weight": 1.309083497520212}, {"from": 26, "to": 40, "value": 3.0077488276450084, "weight": 3.0077488276450084}, {"from": 26, "to": 45, "value": 3.042373071654728, "weight": 3.042373071654728}, {"from": 26, "to": 46, "value": 3.0379716298369197, "weight": 3.0379716298369197}, {"from": 26, "to": 47, "value": 1.3483524695971194, "weight": 1.3483524695971194}, {"from": 28, "to": 34, "value": 0.3181738725090315, "weight": 0.3181738725090315}, {"from": 28, "to": 35, "value": 0.6748149252248222, "weight": 0.6748149252248222}, {"from": 28, "to": 48, "value": 0.3875391265464302, "weight": 0.3875391265464302}, {"from": 28, "to": 52, "value": 1.7102940482371265, "weight": 1.7102940482371265}, {"from": 30, "to": 34, "value": 0.3566858940744625, "weight": 0.3566858940744625}, {"from": 30, "to": 49, "value": 0.4332480163808548, "weight": 0.4332480163808548}, {"from": 31, "to": 37, "value": 1.3660727317637285, "weight": 1.3660727317637285}, {"from": 31, "to": 39, "value": 1.3461326866291667, "weight": 1.3461326866291667}, {"from": 31, "to": 40, "value": 3.489507898548284, "weight": 3.489507898548284}, {"from": 31, "to": 45, "value": 3.708264564878125, "weight": 3.708264564878125}, {"from": 31, "to": 46, "value": 3.462831351679073, "weight": 3.462831351679073}, {"from": 31, "to": 47, "value": 1.336836314235351, "weight": 1.336836314235351}, {"from": 33, "to": 50, "value": 0.2976012952153721, "weight": 0.2976012952153721}, {"from": 35, "to": 48, "value": 0.7175168690958164, "weight": 0.7175168690958164}, {"from": 35, "to": 52, "value": 0.7010902912163118, "weight": 0.7010902912163118}, {"from": 36, "to": 37, "value": 0.5433122104643416, "weight": 0.5433122104643416}, {"from": 37, "to": 40, "value": 2.758432178950272, "weight": 2.758432178950272}, {"from": 37, "to": 45, "value": 1.3396133204589855, "weight": 1.3396133204589855}, {"from": 37, "to": 46, "value": 1.3885457878992569, "weight": 1.3885457878992569}, {"from": 37, "to": 47, "value": 2.679268084842663, "weight": 2.679268084842663}, {"from": 37, "to": 49, "value": 0.4546116542460065, "weight": 0.4546116542460065}, {"from": 37, "to": 51, "value": 2.7088917465875464, "weight": 2.7088917465875464}, {"from": 38, "to": 44, "value": 0.2439789955780164, "weight": 0.2439789955780164}, {"from": 39, "to": 40, "value": 1.3511046467888759, "weight": 1.3511046467888759}, {"from": 39, "to": 45, "value": 1.3131385713964925, "weight": 1.3131385713964925}, {"from": 39, "to": 47, "value": 2.6999865645573022, "weight": 2.6999865645573022}, {"from": 40, "to": 45, "value": 3.2905036714346663, "weight": 3.2905036714346663}, {"from": 40, "to": 46, "value": 3.280903213355206, "weight": 3.280903213355206}, {"from": 40, "to": 47, "value": 1.3345788299019485, "weight": 1.3345788299019485}, {"from": 45, "to": 46, "value": 3.5414636337098333, "weight": 3.5414636337098333}, {"from": 45, "to": 47, "value": 1.3174050703972335, "weight": 1.3174050703972335}, {"from": 46, "to": 47, "value": 1.3326256875422176, "weight": 1.3326256875422176}, {"from": 46, "to": 51, "value": 1.3130126411270868, "weight": 1.3130126411270868}, {"from": 47, "to": 51, "value": 1.292398482506674, "weight": 1.292398482506674}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
