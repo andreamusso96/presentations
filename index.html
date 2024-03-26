@@ -10,119 +10,147 @@
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/black.css">
 
+		<style type="text/css">
+			.container {
+				display: flex;
+				justify-content: space-between;
+				width: 100%;
+				height: 100%; /* Full height of the viewport */
+				padding: 10px;
+			  }
+		  .container .column {
+			flex: 1; /* Ensures each column takes up equal space */
+			display: flex;
+			justify-content: center; /* Center the image horizontally */
+			align-items: center; /* Center the image vertically */
+			  padding: 10px; /* Padding between columns */
+    		box-sizing: border-box;
+		  }
+		  .container img {
+			max-width: 100%;
+			max-height: 100%;
+			aspect-ratio: 1 / 1; /* Keep the images square */
+		  }
+		  .full-screen-image {
+				max-width: 100%; /* ensures the image is never wider than its container */
+				height: auto; /* ensures the image scales in height while maintaining its aspect ratio */
+				display: block; /* optional: changes the image's display to block to remove any bottom margin */
+			}
+		  .fragment.spotlight {
+				transform: translateY(100px);
+				  transform-origin: 0 0;
+		  }
+		  .fragment.spotlight.visible {
+			transform: none;
+			  color: #555
+		  }
+		  .fragment.spotlight.current-fragment {
+			transform: scale(1.1);
+			  color: white;
+		  }
 
-
+		</style>
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-		<style type="text/css">
-			  .fragment.spotlight {
-				transform: translateY(100px);
-				  transform-origin: 0 0;
-			  }
-			  .fragment.spotlight.visible {
-				transform: none;
-				  color: #555
-			  }
-			  .fragment.spotlight.current-fragment {
-				transform: scale(1.5);
-				  color: white;
-			  }
-			  .box {
-				padding: 10px; /* Some padding inside the box */
-				box-sizing: border-box; /* To include padding in the box's width */
-				margin: 10px 0; /* Margin for spacing */
-				text-align: center; /* To center text inside the box */
-			  }
 
-		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>
-						Narrative
-				</section>
-				<section>
-					<div> The hollowing of the <span class="fragment highlight-red"> middle class </span> </div>
+				<section data-background-color="black">
+					Who's <span class="fragment highlight-blue"> sleep </span> is the <span class="fragment highlight-blue"> smartphone </span> disrupting?
 					<br>
-					<div align="left">
-					<ul>
-					  <li class="fragment spotlight">Returns on capital</li>
-					  <li class="fragment spotlight">Routinization</li>
-					  <li class="fragment spotlight">The unequal effect of technology</li>
-					</ul>
+					<br>
+					<span class="fragment"> Andrea Musso, Elizabeth Stockinger and Laura Alessandretti </span>
+				</section>
+				<section data-background-color="black" data-auto-animate >
+					<div class="container">
+						<div class="column">
+							<span class="fragment" data-fragment-index="2">
+							<img src="assets/2024-02-15/farmer.webp" alt="Farmer">
+							</span>
+						</div>
+						<div class="column">
+							<span class="fragment" data-fragment-index="1">
+							<img src="assets/2024-02-15/tractor.webp" alt="Tractor">
+							</span>
+						</div>
+						 <div class="column">
+							<span class="fragment" data-fragment-index="3">
+							<img src="assets/2024-02-15/mechanic.webp" alt="Mechanic">
+							</span>
+						</div>
 					</div>
 				</section>
-				<section>
-					The internet <span class="fragment"> increases the productivity of <span class="fragment highlight-red"> high income </span> workers </span>
-					<span class="fragment"> and decreases that of <span class="fragment highlight-red"> low income </span> workers </span>
-				</section>
-				<section>
-					High income workers use the internet for <span class="fragment"> <span class="fragment highlight-red"> productivity </span> </span>
+				<section data-background-color="black">
+					<span class="fragment highlight-blue"> 50% </span> of Americans use the phone before bed <br> <span class="fragment"> with important repercussions on their  <span class="fragment highlight-blue"> sleep </span> </span>
 					<br>
-					<br>
-					<span class="fragment"> Low income workers use it for <span class="fragment"> <span class="fragment highlight-red"> entertainment </span> </span> </span>
+					<img src="assets/2024-02-15/iphone.png" alt="Sleep" class="full-screen-image">
 				</section>
-				<section data-background-iframe="assets/2023-11-27/rca_income_service.html"  data-background-interactive data-preload> </section>
-				<section data-background-iframe="assets/2023-11-27/service_space.html"  data-background-interactive data-preload> </section>
-				<section>
-					Low income workers use the internet <span class="fragment"> <span class="fragment highlight-red">later at night</span></span>
+				<section data-background-color="black">
+					How does nighttime phone usage differ across <span class="fragment highlight-blue"> socio-economic classes?</span> <br> <br>
+					<span class="fragment"> What are the main drivers of these differences? </span>
 				</section>
-				<section data-background-iframe="assets/2023-11-27/map_nsi_income_paris.html"  data-background-interactive data-preload> </section>
-				<section data-background-iframe="assets/2023-11-27/map_nsi_income_marseille.html"  data-background-interactive data-preload> </section>
-				<section data-background-iframe="assets/2023-11-27/nsi_income_correlation.html"  data-background-interactive data-preload> </section>
-				<section data-background-iframe="assets/2023-11-27/rca_income_time.html"  data-background-interactive data-preload> </section>
-				<section>
-					Methods
-				</section>
-				<section>
-					<span class="fragment highlight-red"> Assumption 1: </span> <span class="fragment"> During the night (10pm to 4am) </span>
-					<span class="fragment"> traffic generated in a tile </span>  <span class="fragment"> is generated only by residents. </span>
-					<br>
-					<br>
-					<span class="fragment"> <span class="fragment highlight-red"> Motivation: </span> </span><span class="fragment"> Use of socio-demographic characteristics of residents
-					</span>
-				</section>
-				<section data-background-iframe="assets/2023-11-27/nsi_income_robustness__amenities.html"  data-background-interactive data-preload> </section>
-				<section>
-					<span class="fragment highlight-red"> Assumption 2 (Strong):</span> <span class="fragment"> Using an app for one minute </span>
-					<span class="fragment"> always generates the <span class="fragment highlight-red"> same amount of traffic. </span> </span>
-					<br>
-					<br>
-					<span class="fragment"> <span class="fragment highlight-red"> Motivation: </span> </span><span class="fragment"> Transforming app traffic into usage time </span>
-				</section>
-				<section>
+				<section data-background-color="black">
 					<div>
-					<span class="fragment highlight-red"> Assumption 2: </span> <span class="fragment"> The amount of traffic generated by an app per minute </span>
-					<span class="fragment"> <span class="fragment highlight-red"> has a known distribution. </span> </span>
+					Data
 					</div>
 					<br>
-					<div align="left">
 					<ul>
-					  <li class="fragment spotlight">App traffic distribution</li>
-					  <li class="fragment spotlight">Sample traffic per minute</li>
+						<li class="fragment spotlight"> NetMob Data Challenge </li>
+						<li class="fragment spotlight"> INSEE </li>
 					</ul>
+				</section>
+				<section data-background-color="white" data-preload>
+					<div class="container">
+						<div class="column">
+							<img src="assets/2024-02-15/map_nsi.png" alt="NSI">
+						</div>
+						<div class="column">
+							<span class="fragment">
+							<img src="assets/2024-02-15/map_income.png" alt="Income">
+							</span>
+						</div>
 					</div>
 				</section>
-				<section data-background-iframe="assets/2023-11-27/nsi_income_robustness__screen_time.html"  data-background-interactive data-preload> </section>
-				<section>
-					<span class="fragment highlight-red"> Assumption 3: </span> <span class="fragment"> When individual spend time online </span>
-					<span class="fragment"> they use apps from the NetMob dataset </span>
-					<br>
-					<br>
-					<span class="fragment">
-					<span class="fragment highlight-red"> Assumption 4: </span></span> <span class="fragment"> 3G internet usage patterns are representative </span>
+				<section data-background-color="white">
+					<img src="assets/2024-02-15/NSI_graphic.png" alt="NSI" width="60%">
 				</section>
-				<section>
-					Further robustness checks: Noise and Mobility
+				<section data-background-iframe="assets/2024-02-15/map_nsi_income_paris.html"  data-background-interactive data-preload> </section>
+				<section data-background-iframe="assets/2024-02-15/map_nsi_income_marseille.html"  data-background-interactive data-preload> </section>
+				<section data-background-iframe="assets/2024-02-15/map_nsi_income_lille.html"  data-background-interactive data-preload> </section>
+				<section data-background-color="black">
+					\[
+					RCA_{it} = \frac{U_{it}}{\sum_{j}U_{jt}} / \frac{\sum_{s}U_{is}}{\sum_{j,s}U_{js}}
+					\]
 				</section>
-				<section data-background-iframe="assets/2023-10-06/home_work_trip_duration_vs_night_screen_index.html"  data-background-interactive data-preload> </section>
-				<section>
-					Issue 1: <span class="fragment"> What we care about is <span class="fragment highlight-red"> absolute </span> time spent online, </span> <span class="fragment"> but we only have <span class="fragment highlight-red"> relative </span> quantities </span>
+				<section data-background-iframe="assets/2024-02-15/rca_income_time.html"  data-background-interactive data-preload> </section>
+				<section data-background-color="black">
+					What are the main <span class="fragment highlight-blue"> drivers </span> of these differences?
+				</section>
+				<section data-background-color="black">
+					<div>
+						What does <span class="fragment highlight-blue"> not </span> drive the differences
+					</div>
 					<br>
+					<ul>
+						<li class="fragment spotlight">Noise</li>
+						<li class="fragment spotlight">Commute times</li>
+						<li class="fragment spotlight">Amenities</li>
+					</ul>
+				</section>
+				<section data-background-iframe="assets/2024-02-15/service_space.html"  data-background-interactive data-preload> </section>
+				<section data-background-color="black">
+					<div>
+						Current work
+					</div>
 					<br>
-					<span class="fragment"> Issue 2: </span> <span class="fragment">Causality </span> <span class="fragment"> -- Do low income households stay up later/consume more entertainment <span class="fragment highlight-red"> because </span> of the internet? </span>
+					<ul>
+						<li class="fragment spotlight">Individual level data</li>
+						<li class="fragment spotlight">Absolute differences</li>
+						<li class="fragment spotlight">Causality</li>
+					</ul>
 				</section>
 			</div>
 		</div>
