@@ -29,7 +29,8 @@
 		  .container img {
 			max-width: 100%;
 			max-height: 100%;
-			aspect-ratio: 1 / 1; /* Keep the images square */
+			  object-fit: contain; /* Ensures the image retains its aspect ratio */
+			/* aspect-ratio: 1 / 1; /* Keep the images square */
 		  }
 		  .full-screen-image {
 				max-width: 100%; /* ensures the image is never wider than its container */
@@ -49,6 +50,15 @@
 			  color: white;
 		  }
 
+		  .fragment.grey-out.visible {
+			transform: none;
+			  color: #555
+		  }
+		  .fragment.grey-out.current-fragment {
+			transform: scale(1);
+			  color: white;
+		  }
+
 		</style>
 
 		<!-- Theme used for syntax highlighted code -->
@@ -63,6 +73,27 @@
 					<br>
 					<br>
 					<span class="fragment"> Andrea Musso, Elizabeth Stockinger and Laura Alessandretti </span>
+				</section>
+				<section data-background-color="black">
+					<span class="fragment"> <span class="fragment highlight-blue"> Billions </span> of people use the phone before bed </span>
+					<br>
+					<span class="fragment"> with important repercussions on their  <span class="fragment highlight-blue"> sleep </span> </span>
+					<br>
+					<img src="assets/2024-02-15/iphone.png" alt="Sleep" class="full-screen-image">
+				</section>
+				<section data-background-color="black">
+					<div class="container">
+						<div class="column">
+							<span class="fragment" data-fragment-index="1">
+								<img src="assets/2024-02-15/sleep_good.PNG" alt="Good sleep">
+							</span>
+						</div>
+						<div class="column">
+							<span class="fragment" data-fragment-index="2">
+								<img src="assets/2024-02-15/sleep_bad.PNG" alt="Bad sleep">
+							</span>
+						</div>
+					</div>
 				</section>
 				<section data-background-color="black" data-auto-animate >
 					<div class="container">
@@ -84,11 +115,6 @@
 					</div>
 				</section>
 				<section data-background-color="black">
-					<span class="fragment highlight-blue"> 50% </span> of Americans use the phone before bed <br> <span class="fragment"> with important repercussions on their  <span class="fragment highlight-blue"> sleep </span> </span>
-					<br>
-					<img src="assets/2024-02-15/iphone.png" alt="Sleep" class="full-screen-image">
-				</section>
-				<section data-background-color="black">
 					How does nighttime phone usage differ across <span class="fragment highlight-blue"> socio-economic classes?</span> <br> <br>
 					<span class="fragment"> What are the main drivers of these differences? </span>
 				</section>
@@ -100,6 +126,7 @@
 					<ul>
 						<li class="fragment spotlight"> NetMob Data Challenge </li>
 						<li class="fragment spotlight"> INSEE </li>
+						<li class="fragment spotlight"> Individual App Usage Data </li>
 					</ul>
 				</section>
 				<section data-background-color="white" data-preload>
@@ -121,11 +148,19 @@
 				<section data-background-iframe="assets/2024-02-15/map_nsi_income_marseille.html"  data-background-interactive data-preload> </section>
 				<section data-background-iframe="assets/2024-02-15/map_nsi_income_lille.html"  data-background-interactive data-preload> </section>
 				<section data-background-color="black">
+					<span class="fragment grey-out">
 					\[
-					RCA_{it} = \frac{U_{it}}{\sum_{j}U_{jt}} / \frac{\sum_{s}U_{is}}{\sum_{j,s}U_{js}}
+					RCA_{lt} = \frac{T_{lt}}{\sum_{s}T_{ls}} / \frac{\sum_{k}T_{kt}}{\sum_{k,s}T_{ks}}
 					\]
+					</span>
+					<br>
+					<span class="fragment">
+					\[
+					RCA_{lt}^{ca} = \alpha_t I_l + \sum_a \beta_t d_a + C_l
+					\]
+					</span>
 				</section>
-				<section data-background-iframe="assets/2024-02-15/rca_income_time.html"  data-background-interactive data-preload> </section>
+				<section data-background-iframe="assets/2024-02-15/time_regression.html"  data-background-interactive data-preload> </section>
 				<section data-background-color="black">
 					What are the main <span class="fragment highlight-blue"> drivers </span> of these differences?
 				</section>
@@ -147,9 +182,8 @@
 					</div>
 					<br>
 					<ul>
-						<li class="fragment spotlight">Individual level data</li>
 						<li class="fragment spotlight">Absolute differences</li>
-						<li class="fragment spotlight">Causality</li>
+						<li class="fragment spotlight">Closing the loop</li>
 					</ul>
 				</section>
 			</div>
